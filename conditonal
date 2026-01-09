@@ -1,0 +1,18 @@
+Console.WriteLine("Give me a Random Number");
+string numString1 = Console.ReadLine()!;
+
+int num1;
+int.TryParse(numString1, out num1);
+Console.Write(numString1);
+if (num1 > 0)
+{
+    Console.WriteLine("This number is positive");
+}
+else if (num1 < 0)
+{
+    Console.WriteLine("This number is Negative");
+}
+else
+{
+    Console.WriteLine("This number is 0");
+}
