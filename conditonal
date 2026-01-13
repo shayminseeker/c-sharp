@@ -1,3 +1,5 @@
+using System.Runtime.ConstrainedExecution;
+
 Console.WriteLine("Give me a Random Number");
 string numString1 = Console.ReadLine()!;
 
@@ -15,4 +17,119 @@ else if (num1 < 0)
 else
 {
     Console.WriteLine("This number is 0");
+}
+//2.
+Console.WriteLine("Give me a number");
+string number1Str = Console.ReadLine()!;
+Console.WriteLine("Give me a second number");
+string number2Str = Console.ReadLine()!;
+
+int number1;
+int number2;
+int.TryParse(number1Str, out number1);
+int.TryParse(number2Str, out number2);
+if (number1 > number2)
+{
+    Console.WriteLine("Number 1 is greater");
+} else if (number2 > number1)
+{
+    Console.WriteLine("Number 2 is greater");
+} else
+{
+
+    Console.WriteLine("The numbers are even");
+}
+
+//3.
+Console.WriteLine("What was your grade on this test? (0-100)");
+string gradeStr = Console.ReadLine()!;
+int grade;
+int.TryParse(gradeStr, out grade);
+
+string lettergrade;
+if (grade <= 59)
+{
+    lettergrade = "F";
+    Console.WriteLine("A score of " + grade + " Represents a letter grade of " + lettergrade);
+} else if (grade <= 69 && grade >= 60)
+{
+    lettergrade = "D";
+    Console.WriteLine("A score of " + grade + " Represents a letter grade of " + lettergrade);
+
+}else if (grade <= 79 && grade >= 70)
+{
+    lettergrade = "C";
+    Console.WriteLine("A score of " + grade + " Represents a letter grade of " + lettergrade);
+
+} else if (grade <= 89 && grade >= 80)
+{
+    lettergrade = "B";
+    Console.WriteLine("A score of " + grade + " Represents a letter grade of " + lettergrade);
+
+}else if (grade <= 100 && grade >= 90)
+{
+
+    lettergrade = "A";
+    Console.WriteLine("A score of " + grade + " Represents a letter grade of " + lettergrade);
+} else
+{
+    Console.WriteLine("Invalid Input");
+}
+
+//4.
+Console.WriteLine("give me a day of the week");
+string weekStr = Console.ReadLine()!;
+int week;
+int.TryParse(weekStr, out week);
+string DayOfTheWeek;
+switch (week)
+{
+    case 1:
+    DayOfTheWeek = "Monday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 2:
+    DayOfTheWeek = "Tuesday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 3:
+    DayOfTheWeek = "Wednesday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 4:
+    DayOfTheWeek = "Thursday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 5:
+    DayOfTheWeek = "Friday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 6:
+    DayOfTheWeek = "Saturday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    case 7:
+    DayOfTheWeek = "Sunday";
+    Console.WriteLine("The Day is " + DayOfTheWeek);
+    break;
+    default:
+    Console.WriteLine("Invalid");
+    break;
+
+    
+
+}
+
+//5.
+Console.WriteLine("Please input the amount of purchase:");
+string purchaseStr = Console.ReadLine()!;
+int purchase;
+double finalPurchase;
+int.TryParse(purchaseStr, out purchase);
+if (purchase > 100)
+{
+    finalPurchase = purchase - (purchase * 0.1);
+    //double discount = (purchase * 0.1) - purchase;
+    Console.WriteLine("Final Purchase Amount" + finalPurchase);
+
 }
