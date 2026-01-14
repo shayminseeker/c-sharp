@@ -1,0 +1,48 @@
+//Simple Array
+using System.Collections.Generic;
+int[] nums;
+
+nums = [1,2,3,4,5];
+for(int i = 0; i < 5; i++)
+{
+    Console.WriteLine(nums[i]);
+}
+//Sum of Elements
+int[] inputArray;
+inputArray = new int[5];
+int sum = 0;
+for(int i = 0; i < 5; i++)
+{
+    Console.WriteLine("Give me a number");
+    string arrayNumStr = Console.ReadLine()!;
+    int arrayNum;
+    int.TryParse(arrayNumStr, out arrayNum);
+    inputArray[i] = arrayNum;
+   
+
+
+}
+foreach(int num in inputArray)
+    {
+        
+        sum += num;
+        
+    }
+Console.WriteLine(sum);
+//List of Strings
+List<string> names = new List<string>();
+for (int i = 0; i < 5; i++)
+{   
+    string input = "";
+    
+    Console.Write("Enter a name");
+    input = Console.ReadLine()!;
+    names.Add(input);
+    foreach(string name in names)
+    {
+        Console.WriteLine(name);
+    }
+    
+
+}
+
