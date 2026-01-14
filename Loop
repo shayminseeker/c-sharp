@@ -1,0 +1,83 @@
+//Seating Arrangement
+using System.Data;
+using System.Globalization;
+using System.Reflection.Metadata;
+using System.Xml.Schema;
+
+Console.WriteLine("Theater Seating Arrangement");
+for ( int rows = 0; rows < 5; rows++)
+{
+    string seatsInRow = "";
+    for (int seats = 0; seats < 10; seats++)
+    {
+        
+         seatsInRow += "<" + rows + ">-" + "<" + seats + "> ";
+        
+    }
+    Console.WriteLine(seatsInRow);
+}
+//Simple Interest
+Console.WriteLine("Simplem Interest Calculation");
+int principle = 100;
+int rate = 5;
+int years = 1;
+int interest;
+while (years < 5)
+{
+    interest = (principle *rate *years)/ 100;
+    years += 1;
+    Console.WriteLine("Year " + years + ":" + "$" + interest);
+}
+//Prime Numbers
+Console.WriteLine("Prime Numbers between 2 and 30:");
+for (int num = 2; num < 30; num++)
+{
+    
+    bool isPrime = true;
+    for(int i = 2 ; i < num/2; i++)
+    {
+       
+        if(num % i == 0)
+        
+        {
+            isPrime = false;
+            break;
+        }
+        
+        
+    }
+    if (isPrime == true)
+    {
+        Console.WriteLine(num);
+    }
+
+}
+//Print Numbers in Reverse
+Console.WriteLine("Numbers from 20 to 1:");
+for( int i = 20; i > 0; i--)
+{
+    Console.WriteLine(i);
+}
+//Simple Login
+Console.WriteLine("Whats your username?");
+string userStr = Console.ReadLine()!;
+Console.WriteLine("Whats your password?");
+string passStr = Console.ReadLine()!;
+while (userStr != "awesome_user_42" && passStr != "p455w0rd")
+{
+    Console.WriteLine("invalid user or password");
+    Console.WriteLine("Enter New User");
+    userStr = Console.ReadLine();
+    Console.WriteLine("Enter New Password");
+    passStr = Console.ReadLine();
+    
+
+}
+Console.WriteLine("Logged in!");
+//Iterate Over an Array
+ string[] someStrings = ["This", "is", "an", "array", "of", "strings", "let's", "iterate", "over", "it!"];
+ foreach(string e in someStrings)
+{
+    Console.WriteLine(e + " ");
+    
+}
