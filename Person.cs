@@ -22,7 +22,7 @@ public int Age
 
    
 
-    public virtual string Introduce()
+    public string Introduce()
     {
         return $"My name is {Name} and I'm {Age} years old";
     }
@@ -69,61 +69,9 @@ public int Age
      public Person Copy()
     {
         Person Pcopy = new Person(this.Name, this.Age);
+        Pcopy.Person();
         return Pcopy;
     }
 
 
-}
-
-public class Student : Person
-{
-    private List<int> _grades = new List<int>();
-    public Student(string name, int age) : base(name, age)
-    {
-    }
-    public double GetGPA()
-    {
-        if (_grades.Count == 0) return 0.0;
-        double total = 0;
-        foreach (var grade in _grades)
-        {
-            total += grade;
-        }
-        if(total > 0 && total <= 59)
-        {
-            return 0.0;
-        }
-        else if(total >= 60 && total <= 69)
-        {
-            return 1.0;
-        }
-        else if(total >= 70 && total <= 79)
-        {
-            return 2.0;
-        }
-        else if(total >= 80 && total <= 89)
-        {
-            return 3.0;
-        }
-        else
-        {
-            return 4.0;
-        }
-    }
-
-    public void AddGrade(double grade)
-    {
-        if (grade < 0 || grade > 100)
-        {
-            throw new ArgumentOutOfRangeException("Grade must be between 0 and 100.");
-        }
-        _grades.Add((int)grade);
-    }
-
-    public override string Introduce()
-    {
-        base.Introduce();
-        
-        return "I am a student and my GPA is " + GetGPA();
-    }
 }
