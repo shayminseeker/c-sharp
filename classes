@@ -1,0 +1,103 @@
+namespace Classes;
+public class Inventory
+{   
+    private string _dealerShipName;
+    public string dealerShipName
+    {
+        get { return _dealerShipName; }
+        set { _dealerShipName = value; }
+    }
+    private string[] _Vehicles;
+    public string[] Vehicles
+    {
+        get { return _Vehicles; }
+        set { _Vehicles = value; }
+    }
+
+    public void addCar(string vehicle)
+    {       
+        _Vehicles = _Vehicles.Append(vehicle).ToArray();
+    }
+    public void removeCar(string vehicle)
+    {
+        _Vehicles = _Vehicles.Where(v => v != vehicle).ToArray();
+    }
+    public void getInventoryString()
+    {
+        for (int i = 0; i < _Vehicles.Length; i++){
+        Console.WriteLine((i)+ "." +_Vehicles[i]);
+    }
+
+    }
+    //constructor
+    public Inventory(string name, string[] vehicles)
+    {
+        _dealerShipName = name;
+        _Vehicles = vehicles;
+    }
+
+}
+
+public class Vehicle
+{
+    private int _year;
+    public int year
+    {
+        get { return _year; }
+        set { _year = value; }
+    }
+
+    private string _make;
+    public string make
+    {
+        get { return _make; }
+        set { _make = value; }
+    }
+
+    private string _model;
+    public string model
+    {
+        get { return _model; }
+        set { _model = value; }
+    }
+
+    public string toString()
+    {
+        return $"{_year} {_make} {_model}";
+    }
+
+    //constructor
+    public Vehicle(int year, string make, string model)
+    {
+        _year = year;
+        _make = make;
+        _model = model;
+    }
+}
+ class Car : Vehicle
+{
+    public Car(int year, string make, string model) : base(year, make, model)
+    {
+    }
+    
+}
+ class Truck : Vehicle
+{
+    private int _bedLength;
+    public int bedLength
+    {
+        get { return _bedLength; }
+        set { _bedLength = value; }
+    }
+
+    public virtual string toString()
+    {
+        return $"{year} {make} {model} - Bed Length: {_bedLength} ft";
+    }
+
+    //construcot
+    public Truck(int year, string make, string model, int bedLength) : base(year, make, model)
+    {
+        _bedLength = bedLength;
+    }
+}
