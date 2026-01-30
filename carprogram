@@ -1,0 +1,99 @@
+// See https://aka.ms/new-console-template for more information
+using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata;
+using System.Linq;
+
+using Classes;
+
+
+
+Inventory inventory1 = new Inventory("Super Cars", new string[] { "Toyota Camry", "Honda Accord", "Tesla Model 3" });
+
+void PrintMenu()
+{
+    Console.WriteLine("1. View Inventory");
+    Console.WriteLine("2. Add a Vehicle");
+    Console.WriteLine("3. Remove a Vehicle");
+    Console.WriteLine("4. Quit");
+}
+
+int GetUserInput()
+{
+    while (true)
+    {
+        Console.Write("Select an option from the menu: ");
+        string? userInputStr = Console.ReadLine();
+        if (int.TryParse(userInputStr, out int userInput))
+            return userInput;
+        Console.WriteLine("Invalid input. Please enter a number.");
+    }
+}
+void HandleUserInput(int userInput)
+{
+    switch (userInput)
+    {
+        case 1:
+        ViewInventory();
+        break;
+
+        case 2:
+        Inventory1.AddCar("Toyota Corolla");
+        break;
+    
+        case 3:
+        RemoveVehicle();
+        break;
+
+        default:
+        break;
+
+
+    }
+}
+
+
+void RemoveVehicle()
+{
+    Console.WriteLine("Which vehicle would you like to remove");
+    string? userRemoveStr = Console.ReadLine();
+    if (!int.TryParse(userRemoveStr, out int userRemove) || userRemove < 1 || userRemove > carMake.Length)
+    {
+        Console.WriteLine("Invalid selection.");
+        return;
+    }
+
+    int placeHold = userRemove - 1;
+    var makeList = carMake.ToList();
+    var modelList = carModel.ToList();
+    var yearList = carYear.ToList();
+
+    makeList.RemoveAt(placeHold);
+    modelList.RemoveAt(placeHold);
+    yearList.RemoveAt(placeHold);
+
+    carMake = makeList.ToArray();
+    carModel = modelList.ToArray();
+    carYear = yearList.ToArray();
+    Console.WriteLine("Vehicle removed.");
+
+}
+
+void ViewInventory()
+{
+    for (int i = 0; i < carModel.Length; i++){
+        Console.WriteLine((i)+ "." +carModel[i] + " " + carMake[i] + " " +  carYear[i]);
+    }
+
+    
+
+
+}
+// Main loop
+while (true)
+{
+    PrintMenu();
+    int userInput = GetUserInput();
+    if (userInput == 4) // Quit
+        break;
+    HandleUserInput(userInput);
+}
