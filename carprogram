@@ -1,13 +1,17 @@
 // See https://aka.ms/new-console-template for more information
-using System.Reflection.Metadata.Ecma335;
-using System.Reflection.Metadata;
-using System.Linq;
 
-using Classes;
+
+//using classes;
 
 
 
-Inventory inventory1 = new Inventory("Super Cars", new string[] { "Toyota Camry", "Honda Accord", "Tesla Model 3" });
+Car Ford1 = new Car(2012,"Ford", "Mustang");
+Car Chev2 = new Car(2025,"Chevrolet", "Camaro");
+Truck truck3 = new Truck(2025, "Ford", "Raptor", 22 );
+
+Inventory inventory1 = new Inventory("Lucas' SuperCars",[Ford1,Chev2,truck3]);
+
+
 
 void PrintMenu()
 {
@@ -33,15 +37,54 @@ void HandleUserInput(int userInput)
     switch (userInput)
     {
         case 1:
-        ViewInventory();
+        inventory1.getInventoryString();
         break;
 
         case 2:
-        Inventory1.AddCar("Toyota Corolla");
+        Console.WriteLine("Enter a Year");
+        string? newVehicleYear = Console.ReadLine();
+        int vehicleYear;
+        int.TryParse(newVehicleYear, out vehicleYear);
+        Console.WriteLine("Enter a Make");
+        string? newVehicleMake = Console.ReadLine();
+        Console.WriteLine("Enter a Model");
+        string? newVehicleModel = Console.ReadLine();
+        Console.WriteLine("Is this car a truck?");
+        string isTruck = Console.ReadLine();
+        if(isTruck == "Yes" && isTruck == "yes")
+            {
+                Console.WriteLine("Whats its bed length?");
+                string newTruckLength= Console.ReadLine();
+                int truckLength;
+                int.TryParse(newTruckLength, out truckLength);
+                Truck newTruck = new Truck(vehicleYear,newVehicleMake,newVehicleModel,truckLength);
+                inventory1.addCar(newTruck);
+                
+            }
+            else
+            {
+                // int currentLength = inventory1.generateId();
+                // // string idCode = newVehicleMake + currentLength;
+                Car newCar = new Car(vehicleYear,newVehicleMake,newVehicleModel);
+                inventory1.addCar(newCar);
+            }
+
+        
+        
         break;
     
         case 3:
-        RemoveVehicle();
+        Console.WriteLine("Which vehicle would you like to remove?");
+        string vehicleToRemove = Console.ReadLine();
+        int indexToRemove;
+         bool isInt = int.TryParse(vehicleToRemove, out indexToRemove);
+         if (isInt)
+            {
+                inventory1.removeCar(indexToRemove);
+            }
+         
+
+        
         break;
 
         default:
@@ -52,42 +95,9 @@ void HandleUserInput(int userInput)
 }
 
 
-void RemoveVehicle()
-{
-    Console.WriteLine("Which vehicle would you like to remove");
-    string? userRemoveStr = Console.ReadLine();
-    if (!int.TryParse(userRemoveStr, out int userRemove) || userRemove < 1 || userRemove > carMake.Length)
-    {
-        Console.WriteLine("Invalid selection.");
-        return;
-    }
-
-    int placeHold = userRemove - 1;
-    var makeList = carMake.ToList();
-    var modelList = carModel.ToList();
-    var yearList = carYear.ToList();
-
-    makeList.RemoveAt(placeHold);
-    modelList.RemoveAt(placeHold);
-    yearList.RemoveAt(placeHold);
-
-    carMake = makeList.ToArray();
-    carModel = modelList.ToArray();
-    carYear = yearList.ToArray();
-    Console.WriteLine("Vehicle removed.");
-
-}
-
-void ViewInventory()
-{
-    for (int i = 0; i < carModel.Length; i++){
-        Console.WriteLine((i)+ "." +carModel[i] + " " + carMake[i] + " " +  carYear[i]);
-    }
-
-    
 
 
-}
+
 // Main loop
 while (true)
 {
