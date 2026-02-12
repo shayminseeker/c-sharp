@@ -1,4 +1,8 @@
-namespace Classes;
+
+
+//namespace classes;
+using System.Security.Cryptography.X509Certificates;
+
 public class Inventory
 {   
     private string _dealerShipName;
@@ -7,30 +11,49 @@ public class Inventory
         get { return _dealerShipName; }
         set { _dealerShipName = value; }
     }
-    private string[] _Vehicles;
-    public string[] Vehicles
+    private Vehicle[] _Vehicles;
+    public Vehicle[] Vehicles
     {
         get { return _Vehicles; }
         set { _Vehicles = value; }
     }
 
-    public void addCar(string vehicle)
-    {       
+    public void addCar(Vehicle vehicle)
+    {
         _Vehicles = _Vehicles.Append(vehicle).ToArray();
     }
-    public void removeCar(string vehicle)
+
+
+        
+    
+    public void removeCar(int index)
     {
-        _Vehicles = _Vehicles.Where(v => v != vehicle).ToArray();
+        
+        if (index >= 0 && index < _Vehicles.Length)
+        {
+            _Vehicles = _Vehicles.Where((v, i) => i != index-1).ToArray();
+        }
+        else
+        {
+            Console.WriteLine("Invalid index. No vehicle removed.");
+        }
     }
+    
+    
+
     public void getInventoryString()
     {
         for (int i = 0; i < _Vehicles.Length; i++){
-        Console.WriteLine((i)+ "." +_Vehicles[i]);
+        Console.WriteLine((i+1)+ "." +_Vehicles[i].toString());
+        
+        }
     }
 
-    }
+    
+
+    
     //constructor
-    public Inventory(string name, string[] vehicles)
+    public Inventory(string name, Vehicle[] vehicles)
     {
         _dealerShipName = name;
         _Vehicles = vehicles;
@@ -90,7 +113,7 @@ public class Vehicle
         set { _bedLength = value; }
     }
 
-    public virtual string toString()
+    public virtual string TruckToString()
     {
         return $"{year} {make} {model} - Bed Length: {_bedLength} ft";
     }
